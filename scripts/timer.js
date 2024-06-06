@@ -6,15 +6,26 @@ export default class Timer {
   }
 
   start() {
-    setInterval(() => this.reduceBySecond(), 1000)
+    const intervalId = setInterval(() => this.updateTimer(intervalId), 1000)
     // setTimeout(console.log(this.timeLeft), 2000)
+  }
+
+  updateTimer(intervalId) {
+    if (this.timeLeft > 0) {
+      this.reduceBySecond()
+      this.updateTimerDom()
+    } else {
+      clearInterval(intervalId)
+    }
   }
 
   reduceBySecond() {
     this.timeLeft -= 1
-    console.log(this.timeLeft)
   }
 
+  updateTimerDom() {
+    document.querySelector('.time-left').innerText = this.timeLeft
+  }
   // get time() {
   //   return this.timeLeft
   // }

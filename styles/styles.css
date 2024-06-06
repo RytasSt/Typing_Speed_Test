@@ -1,8 +1,5 @@
 body {
     background: #e0d7c1 !important;
-    /* color: #e7b28e !important; */
-    /* color: #e2caaf !important; */
-    /* background-color: #E0D7C1; */
 }
 
 .page-wrapper {
@@ -11,7 +8,6 @@ body {
     height: 90vh;
     justify-items: center;
     align-items: center;
-    /* align-items: center; */
 }
 
 .page-title {
@@ -20,7 +16,19 @@ body {
     color: #e7b28e;
 }
 
-.test-text-container {
+.test-container {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.time-left {
+    padding: 0rem 1.3rem;
+    font-size: 1.3rem;
+    height: 31px;
+    color: #dd7a5f;
+}
+
+.test-text {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -28,6 +36,7 @@ body {
     padding: 1rem;
     height: 170px;
     overflow: hidden;
+    color: #5f4c41
 }
 
 .word {
@@ -37,9 +46,29 @@ body {
     font-size: 1.6rem;
     font-weight: 400;
     font-family: Arial, Helvetica, sans-serif;
-    color: #5f4c41
 }
 
 .letter {
     padding: 0rem 0.03rem;
+    box-sizing: border-box;
+}
+
+.caret {
+    border-left: 2px solid #dd7a5f;
+    animation: blinker 1s infinite;
+}
+
+@keyframes blinker {
+    50% {
+        border-left: 2px solid rgba(0, 0, 0, 0)
+    }
+}
+
+
+.correct {
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+.incorrect {
+    background-color: rgba(255, 0, 0, 0.5);
 }

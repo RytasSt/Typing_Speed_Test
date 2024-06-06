@@ -1,16 +1,17 @@
 import * as config from './config.js'
 
-export default class TestText {
+export default class Text {
   constructor(poem) {
     this.poem = poem
+    this.cleanedPoem = null
   }
 
   displayText() {
-    const cleanedPoem = this.cleanPoem(this.poem)
-    const container = document.querySelector('.test-text-container')
+    this.cleanedPoem = this.cleanPoem(this.poem)
+    const container = document.querySelector('.test-text')
     container.innerHTML = ''
 
-    cleanedPoem.forEach(line => {
+    this.cleanedPoem.forEach(line => {
       const lineWords = line.split(' ')
 
       lineWords.forEach(word => {
@@ -31,6 +32,8 @@ export default class TestText {
       const letterDiv = this.createLetterDiv(letter)
       wordDiv.appendChild(letterDiv)
     })
+    // add 'spacebar' between words
+    wordDiv.appendChild(this.createLetterDiv(''))
 
     return wordDiv
   }
@@ -50,6 +53,6 @@ export default class TestText {
       .map(line => line.trim())
       .filter(line => line !== '')
       .slice(0, config.maxLines)
-      .map(line => line.replace(/\s{2,}/gm, ' '))
+      .map(line => line.replace(/\s{2,}/gm, ' ')) // reduce whitespaces inside lines to one
   }
 }
